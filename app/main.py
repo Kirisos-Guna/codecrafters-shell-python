@@ -2,14 +2,15 @@ import sys
 
 
 def main():
-    # TODO: Uncomment the code below to pass the first stage
-    sys.stdout.write("$ ")
-    pass
+    while True:
+        sys.stdout.write("$ ")
+        sys.stdout.flush()
 
-    #Handle invalid commands
-def input():
-    command = input()
-    print(f"{command}: command not found")
+        command = input()
+        if command == "exit 0":
+            exit()
+        print(f"{command}: command not found")
+
 
 if __name__ == "__main__":
     main()
