@@ -1,4 +1,15 @@
 import sys
+import os
+
+
+def rasie_system_exit(exit_code):
+    raise SystemExit(exit_code)
+
+
+commands = {
+    "exit": lambda exit_code: os._exit(int(exit_code)),
+    "echo": lambda *args: print(" ".join(args)),
+}
 
 
 def main():
@@ -6,10 +17,19 @@ def main():
         sys.stdout.write("$ ")
         sys.stdout.flush()
 
-        command = input()
-        if command == "exit 0":
-            exit()
-        print(f"{command}: command not found")
+        # Wait for user input
+        command_with_args = input().split()
+
+        command = command_with_args[0]
+
+        if not command in commands:
+
+
+          if not command in commands:
+            print(f"{command}: command not found")
+            continue
+
+        commands[command](*command_with_args[1:])
 
 
 if __name__ == "__main__":
